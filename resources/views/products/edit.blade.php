@@ -11,6 +11,10 @@
     <label>Preço:</label><br>
     <input name="price" type="number" value="{{ $product['price'] }}" /><br>
     <label>Tipo:</label><br>
-    <input name="type_id" type="number" value="{{ $product['type_id']}}" /><br>
+    <select name="type_id">
+        @foreach($types as $type)
+            <option {{ $product->type_id == $type->id ? 'selected' : '' }} value="{{ $type->id }}">{{ $type->name }}</option>
+        @endforeach
+    </select></br>
     <input type="submit" value="Salvar" />
 </form>
