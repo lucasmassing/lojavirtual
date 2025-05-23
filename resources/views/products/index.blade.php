@@ -14,7 +14,7 @@
     @endif
 
     <form action="{{ url('/products') }}" method="get">
-        <input placeholder="Pesquisar pelo nome" name="search" type="text"/>
+        <input placeholder="Pesquisar pelo nome" name="search" type="text" value="{{ request('search') }}"/>
         <button type="submit">Pesquisar</button>
     </form>
 

@@ -13,7 +13,7 @@ class ProductsController extends Controller
     {
         $filter = $request->input('search');
         if ($filter) {
-            $products = Product::where('name', 'like', "%filter%")->get();
+            $products = Product::where('name', 'like', '%' . $filter . '%')->get();
         } else {
             $products = Product::with('type')->orderBy('name','asc')->get();
         }
@@ -42,7 +42,7 @@ class ProductsController extends Controller
             'type_id' => $request->type_id,
         ]);
         return redirect('/products')
-        ->with('sucess','Produto salvo com sucesso');
+        ->with('success','Produto salvo com sucesso');
     }
 
     public function edit($id)
