@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Type;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class TypesController extends Controller
@@ -12,12 +13,12 @@ class TypesController extends Controller
         return view('types.index', ['types' => Type::all()]); // esse segundo parametro é o nome da variavel que busca as coisas no banco de dados
     }
 
-    public function create_types()
+    public function create()
     { // mostra a view na tela
         return view('types.create');
     }
 
-    public function store_types(Request $request)
+    public function store(Request $request)
     { // método post precisa da request
         Type::create([
             'name' => $request->name,
@@ -43,8 +44,15 @@ class TypesController extends Controller
     }
 
     public function destroy($id){
-        $type = Type::find($id);
-        $type->delete();
-        return redirect('/types');
+        try{
+            $type = Type::find($id);
+            $type->delete();
+            return redirect('/types')->with('success','Tipo excluído com sucesso!');
+        } catch (QueryException $e) {
+            if ($e->getCode()=== '23000'){
+                return redirect('/types')->with('error','Não é possível excluir! Existem produtos vinculados à esse tipo');
+            }
+            return redirect('/types')->with('error','Erro inesperado');
+        }
     }
 }

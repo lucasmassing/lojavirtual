@@ -6,6 +6,19 @@
     <title>Lista de Tipos</title>
 </head>
 <body>
+
+    @if ($message = Session::get('success'))
+                <div class="p-4 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 rounded">
+                    {{ $message }}
+                </div>
+            @endif
+    
+    @if ($message = Session::get('error'))
+                <div class="p-4 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 rounded">
+                    {{ $message }}
+                </div>
+            @endif
+
     <a href="{{ url('/types/new') }}">Adicionar</a>
     <a href="{{ url('/') }}">Voltar</a>
     <h3>Lista de tipos</h3>
@@ -17,5 +30,6 @@
             </li>
         @endforeach            
     </ul>
+
 </body>
 </html>

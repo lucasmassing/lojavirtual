@@ -1,5 +1,6 @@
-<p>Seja bem vindo ao sistema</p>
-<ul>
-    <li><a href="{{ url('/types') }}">Manutenção de tipos</a></li>
-    <li><a href="{{ url('/products') }}">Manutenção de produtos</a></li>
-</ul>
+<x-guest-layout>
+    Bem vindo
+    <br>
+    <a href="{{ route('login') }}">Login</a><br>
+    <a href="{{ route(name: 'register') }}">Cadastro</a><br>
+</x-guest-layout>
