@@ -52,6 +52,15 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('suppliers', function (Blueprint $table) {
+            $table->id();
+            $table->enum('type_enum',['F','J']); // Física ou Jurídica
+            $table->string('name_reason',100);
+            $table->string('cpf_cnpj',20)->unique();
+            $table->string('phone',20)->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

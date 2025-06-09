@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h3 class="font-semibold text-gray-800 dark:text-gray-200">
-            {{ __('Manutenção de tipos') }}
+            {{ __('Manutenção de Fornecedores') }}
         </h3>
     </x-slot>
 
@@ -10,11 +10,13 @@
 
             {{-- Ações principais --}}
             <div class="flex justify-between items-center">
+                {{-- Botão Voltar --}}
                 <a href="{{ url('/') }}">
                     <x-secondary-button>Voltar</x-secondary-button>
                 </a>
 
-                <a href="{{ url('/types/new') }}">
+                {{-- Botão Adicionar --}}
+                <a href="{{ url('/suppliers/new') }}">
                     <x-primary-button>Adicionar</x-primary-button>
                 </a>
             </div>
@@ -33,13 +35,19 @@
                 </div>
             @endif
 
-            {{-- Tabela de tipos --}}
+            {{-- Tabela de fornecedores --}}
             <div class="overflow-x-auto bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <table class="w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="border-b border-white">
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                Nome
+                                Nome / Razão
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                Tipo Enum
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                CPF / CNPJ
                             </th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                 Ações
@@ -47,16 +55,22 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                        @forelse ($types as $type)
+                        @forelse ($suppliers as $supplier)
                             <tr>
                                 <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
-                                    {{ $type->name }}
+                                    {{ $supplier->name_reason }}
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                                    {{ $supplier->type_enum }}
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                                    {{ $supplier->cpf_cnpj }}
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 space-x-2">
-                                    <a href="{{ url('types/update', ['id' => $type->id]) }}">
+                                    <a href="{{ url('suppliers/update', ['id' => $supplier->id]) }}">
                                         <x-primary-button class="bg-indigo-600 hover:bg-indigo-700">Editar</x-primary-button>
                                     </a>
-                                    <a href="{{ url('types/delete', ['id' => $type->id]) }}">
+                                    <a href="{{ url('suppliers/delete', ['id' => $supplier->id]) }}">
                                         <x-danger-button>Excluir</x-danger-button>
                                     </a>
                                 </td>
@@ -64,7 +78,7 @@
                         @empty
                             <tr>
                                 <td colspan="2" class="px-6 py-4 text-sm text-gray-500 dark:text-gray-300">
-                                    Nenhum tipo cadastrado.
+                                    Nenhum fornecedor encontrado.
                                 </td>
                             </tr>
                         @endforelse
