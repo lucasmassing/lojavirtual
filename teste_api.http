@@ -1,0 +1,24 @@
+POST http://127.0.0.1:8000/api/loginapi
+Content-Type: : application/json
+Accept: application/json
+
+{
+    "email": "202782@upf.br",
+    "password": "lucas619"
+}
+
+###
+GET http://127.0.0.1:8000/api/products
+Authorization: Bearer 4|BfWcAOgLJVECrk96TJI2qP5gSv44Ea1b6PlQa7Asc1c7fb08
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/api/register
+Content-Type: : application/json
+Accept: application/json
+
+{
+    "name": "usuarioApi",
+    "email": "uso@api.com",
+    "password": 741235
+}
