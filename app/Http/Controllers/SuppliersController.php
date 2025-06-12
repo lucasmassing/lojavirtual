@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
+
 class SuppliersController extends Controller
 {
 
@@ -31,6 +32,20 @@ class SuppliersController extends Controller
             'type_enum' => 'required | min:1 | max:50',
             'cpf_cnpj' => 'required | gt:0',
             'phone' => 'required | gt:0'
+        ],[
+            'name_reason.required' => 'O campo Nome / Razão é obrigatório.',
+            'name_reason.min' => 'O campo Nome / Razão deve ter pelo menos 2 caracteres.',
+            'name_reason.max' => 'O campo Nome / Razão deve ter no máximo 50 caracteres.',
+
+            'type_enum.required' => 'O campo Tipo é obrigatório.',
+            'type_enum.min' => 'O campo Tipo deve ter no mínimo 1 caractere.',
+            'type_enum.max' => 'O campo Tipo deve ter no máximo 50 caracteres.',
+
+            'cpf_cnpj.required' => 'O campo CPF / CNPJ é obrigatório.',
+            'cpf_cnpj.gt' => 'O campo CPF / CNPJ deve ser maior que zero.',
+
+            'phone.required' => 'O campo Telefone é obrigatório.',
+            'phone.gt' => 'O campo Telefone deve ser maior que zero.',
         ]);
         Supplier::create([
             'name_reason' => $request->name_reason,
@@ -53,6 +68,27 @@ class SuppliersController extends Controller
     {
         $supplier = Supplier::find($request->id);
         //método update faz um update product set name = ? etc...
+        $request->validate([
+            'name_reason'=> 'required | min:2 | max:50',
+            'type_enum' => 'required | min:1 | max:50',
+            'cpf_cnpj' => 'required | gt:0',
+            'phone' => 'required | gt:0'
+        ],[
+            'name_reason.required' => 'O campo Nome / Razão é obrigatório.',
+            'name_reason.min' => 'O campo Nome / Razão deve ter pelo menos 2 caracteres.',
+            'name_reason.max' => 'O campo Nome / Razão deve ter no máximo 50 caracteres.',
+
+            'type_enum.required' => 'O campo Tipo é obrigatório.',
+            'type_enum.min' => 'O campo Tipo deve ter no mínimo 1 caractere.',
+            'type_enum.max' => 'O campo Tipo deve ter no máximo 50 caracteres.',
+
+            'cpf_cnpj.required' => 'O campo CPF / CNPJ é obrigatório.',
+            'cpf_cnpj.gt' => 'O campo CPF / CNPJ deve ser maior que zero.',
+
+            'phone.required' => 'O campo Telefone é obrigatório.',
+            'phone.gt' => 'O campo Telefone deve ser maior que zero.',
+        ]);
+
         $supplier->update([
             'name_reason' => $request->name_reason,
             'type_enum' => $request->type_enum,
@@ -65,6 +101,6 @@ class SuppliersController extends Controller
     public function destroy($id){
         $supplier = Supplier::find($id);
         $supplier->delete();
-        return redirect('/suppliers');
+        return redirect('/suppliers')->with('success','Fornecedor excluído com sucesso!');;
     }
 }
