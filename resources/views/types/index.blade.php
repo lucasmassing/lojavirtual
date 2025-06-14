@@ -59,9 +59,10 @@
                                 <a href="{{ url('types/update', ['id' => $type->id]) }}">
                                     <x-primary-button class="bg-indigo-600 hover:bg-indigo-700">Editar</x-primary-button>
                                 </a>
-                                <a href="{{ url('types/delete', ['id' => $type->id]) }}">
+                                <form action="{{ url('types/delete', ['id' => $type->id]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este tipo?')" style="display: inline;">
+                                    @csrf
                                     <x-danger-button>Excluir</x-danger-button>
-                                </a>
+                                </form>
                             </td>
                         </tr>
                         @empty

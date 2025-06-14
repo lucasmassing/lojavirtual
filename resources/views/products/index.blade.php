@@ -71,20 +71,22 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                         @foreach ($products as $product)
-                            <tr>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">{{ $product->name }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
-                                    {{ $product->type->name }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 space-x-2">
-                                    <a href="{{ url('/products/update', ['id' => $product->id]) }}">
-                                        <x-primary-button
-                                            class="bg-indigo-600 hover:bg-indigo-700">Editar</x-primary-button>
-                                    </a>
-                                    <a href="{{ url('/products/delete', ['id' => $product->id]) }}">
-                                        <x-danger-button>Excluir</x-danger-button>
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">{{ $product->name }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                                {{ $product->type->name }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 space-x-2">
+                                <a href="{{ url('/products/update', ['id' => $product->id]) }}">
+                                    <x-primary-button
+                                        class="bg-indigo-600 hover:bg-indigo-700">Editar</x-primary-button>
+                                </a>
+                                <form action="{{ url('/products/delete', ['id' => $product->id]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?')" style="display: inline;">
+                                    @csrf
+                                    <x-danger-button>Excluir</x-danger-button>
+                                </form>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
