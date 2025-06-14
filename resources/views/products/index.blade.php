@@ -23,9 +23,19 @@
 
             {{-- Mensagem de sucesso --}}
             @if ($message = Session::get('success'))
-                <div class="p-4 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 rounded">
-                    {{ $message }}
-                </div>
+            <div class="flex items-center p-4 mb-4 text-sm text-white border border-green-600 rounded-lg bg-green-600 dark:bg-green-500 dark:border-green-400">
+                <svg class="w-5 h-5 me-2 text-white dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="font-medium">{{ $message }}</span>
+            </div>
+            @endif
+
+            {{-- Mensagem de erro --}}
+            @if ($message = Session::get('error'))
+            <div class="p-4 mb-4 text-sm rounded-md bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">
+                {{ $message }}
+            </div>
             @endif
 
             {{-- Formulário de busca --}}
@@ -35,7 +45,7 @@
                     <x-text-input id="search" name="search" type="text" value="{{ $filter ?? '' }}"
                         class="mt-1" />
                 </div>
-                <div class="flex gap-2 self-end">
+                <div class="h-10 px-4">
                     <x-primary-button type="submit">Pesquisar</x-primary-button>
                     <a href="{{ url('/products') }}">
                         <x-secondary-button>Limpar</x-secondary-button>

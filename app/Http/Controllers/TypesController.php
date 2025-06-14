@@ -23,7 +23,7 @@ class TypesController extends Controller
         Type::create([
             'name' => $request->name,
         ]);
-        return redirect('/types');
+        return redirect('/types')->with('success','Tipo atualizado com sucesso!');;
     }
 
         public function edit($id)
@@ -40,7 +40,7 @@ class TypesController extends Controller
         $type->update([
             'name' => $request->name,
         ]);
-        return redirect('/types');
+        return redirect('/types')->with('success','Tipo atualizado com sucesso!');;
     }
 
     public function destroy($id){

@@ -95,7 +95,7 @@ class SuppliersController extends Controller
             'cpf_cnpj' => $request->cpf_cnpj,
             'phone' => $request->phone
         ]);
-        return redirect('/suppliers');
+        return redirect('/suppliers')->with('success','Fornecedor atualizado com sucesso!');;
     }
 
     public function destroy($id){

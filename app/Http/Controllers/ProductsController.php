@@ -31,8 +31,8 @@ class ProductsController extends Controller
     { // método post precisa da request
         $request->validate([
             'name' => 'required|min:2|max:50',
-            'quantity' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0.01',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
             'image_path' => 'required|image|mimes:jpg,jpeg,png|max:2048', // max 2mb
         ], [
             'name.required' => 'O nome do produto é obrigatório.',
@@ -76,8 +76,8 @@ class ProductsController extends Controller
         //método update faz um update product set name = ? etc...
         $request->validate([
             'name' => 'required|min:2|max:50',
-            'quantity' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0.01',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
             'image_path' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ],[
             'name.required' => 'O nome do produto é obrigatório.',

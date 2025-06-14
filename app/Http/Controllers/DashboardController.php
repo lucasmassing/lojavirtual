@@ -13,8 +13,10 @@ class DashboardController extends Controller
         $selectedType = $request->input('type_id');
 
         $products = Product::with('type')
-            ->when($selectedType, fn($query)=>$query->where('type_id',$selectedType))
-            ->get();
+        ->when($selectedType, fn($query) => $query->where('type_id', $selectedType))
+        ->where('quantity', '>', 0)   // Apenas produtos com quantidade > 0
+        ->where('price', '>', 0)       // Apenas produtos com preço > 0
+        ->get();
 
         return view('dashboard', compact('products', 'types', 'selectedType'));
     }
