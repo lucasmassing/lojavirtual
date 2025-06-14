@@ -8,21 +8,21 @@
     <div class="max-w-xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-md shadow">
 
         @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <x-input-error :messages="$error" class="mt-2" />
-                @endforeach
-            </ul>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <x-input-error :messages="$error" class="mt-2" />
+            @endforeach
+        </ul>
         @endif
         <br>
 
-        <form action="{{ url('products/new') }}" method="POST">
+        <form action="{{ url('products/new') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input class="w-full" type="text" name="name" />
             </div>
-            
+
             <div>
                 <x-input-label for="name" :value="__('Descrição')" />
                 <textarea id="description" name="description"
@@ -44,10 +44,17 @@
                 <select id="type_id" name="type_id"
                     class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white">
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
                 </select>
             </div>
+
+            <div>
+                <x-input-label for="image">Imagem do produto:</x-input-label>
+                <input type="file" name="image_path" accept="image/*"
+                    class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white mt-2">
+            </div>
+
 
             <div class="flex items-center justify-end mt-4">
                 <a href="{{ url('/products') }}">
@@ -58,7 +65,6 @@
                     {{ __('Salvar') }}
                 </x-primary-button>
             </div>
-
 
         </form>
     </div>

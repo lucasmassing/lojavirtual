@@ -16,7 +16,7 @@
         @endif
         <br>
 
-        <form action="{{ url('products/update') }}" method="POST">
+        <form action="{{ url('products/update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $product['id'] }}">
 
@@ -39,6 +39,12 @@
             <div>
                 <x-input-label for="price" :value="__('Preço')" />
                 <x-text-input class="w-full" type="number" name="price" value="{{ $product['price'] }}" />
+            </div>
+
+            <div>
+                <x-input-label for="image_path">Alterar imagem do produto</x-input-label>
+                <input type="file" name="image_path" accept="image/*"
+                 class="w-full mt-2 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white">
             </div>
 
             <div>
