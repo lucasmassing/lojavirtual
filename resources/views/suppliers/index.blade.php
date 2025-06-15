@@ -76,9 +76,9 @@
                                 </a>
                                 <form action="{{ url('suppliers/delete', ['id' => $supplier->id]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este fornecedor?')" style="display: inline;">
                                     @csrf
+                                    @method('DELETE')
                                     <x-danger-button>Excluir</x-danger-button>
                                 </form>
-
                             </td>
                         </tr>
                         @empty

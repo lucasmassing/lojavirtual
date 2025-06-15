@@ -83,8 +83,10 @@
                                 </a>
                                 <form action="{{ url('/products/delete', ['id' => $product->id]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?')" style="display: inline;">
                                     @csrf
+                                    @method('DELETE')
                                     <x-danger-button>Excluir</x-danger-button>
                                 </form>
+
                             </td>
                         </tr>
                         @endforeach
