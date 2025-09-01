@@ -16,17 +16,17 @@ class Product_DB_Test extends TestCase
         $type = Type::create(['name' => 'Console']);
 
         $product = Product::create([
-            'name' => 'PS5',
-            'description' => 'PlayStation 5 novo',
+            'name' => 'God of War 2',
+            'description' => 'God of War 2 de PS2',
             'quantity' => 10,
-            'price' => 5000.00,
+            'price' => 20.00,
             'type_id' => $type->id,
-            'image_path' => 'images/ps5.jpg'
+            'image_path' => 'images/god2.jpg'
         ]);
 
         $this->assertDatabaseHas('products', [
-            'name' => 'PS5',
-            'description' => 'PlayStation 5 novo',
+            'name' => 'God of War 2',
+            'description' => 'God of War 2',
         ]);
     }
 }
