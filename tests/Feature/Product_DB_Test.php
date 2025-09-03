@@ -26,7 +26,7 @@ class Product_DB_Test extends TestCase
 
         $this->assertDatabaseHas('products', [
             'name' => 'God of War 2',
-            'description' => 'God of War 2',
+            'description' => 'God of War 2 de PS2',
         ]);
     }
 }
