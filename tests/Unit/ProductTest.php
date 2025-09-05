@@ -1,5 +1,7 @@
 <?php
 
+//  php artisan test --filter=productTest
+
 namespace Tests\Unit;
 
 use tests\TestCase;
@@ -19,6 +21,7 @@ class ProductTest extends TestCase
             'image_path' => 'images/mgs2.jpg'
         ]);
 
+        // Verifica se os valores passados são os mesmos esperados
         $this->assertEquals('Metal Gear Solid', $product->name);
         $this->assertEquals('Metal Gear Solid de PS2', $product->description);
         $this->assertEquals(1, $product->quantity);

@@ -1,5 +1,7 @@
 <?php
 
+// php artisan test --filter=Type_DB_Test
+
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,6 +13,7 @@ class Type_DB_Test extends TestCase
 {
     use RefreshDatabase;
 
+    // Verifica se um Tipo pode ter produtos associados à ele
     public function test_type_can_have_products()
     {
         $type = Type::create(['name' => 'Console']);
@@ -24,6 +27,7 @@ class Type_DB_Test extends TestCase
             'image_path' => 'images/re3.jpg'
         ]);
 
+        // Afirma que um Tipo foi salvo no banco
         $this->assertDatabaseHas('types', ['name' => 'Console']);
         $this->assertDatabaseHas('products',['name' => 'Resident Evil 3']);
 

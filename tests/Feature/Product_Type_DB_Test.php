@@ -1,5 +1,7 @@
 <?php
 
+// php artisan test --filter=Product_Type_DB_Test
+
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,6 +14,7 @@ class Product_Type_DB_Test extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    // Verifica se existe a relação Belongs To entre Product e Type
     public function product_belongs_to_type()
     {
         $type = Type::create(['name' => 'Console']);
